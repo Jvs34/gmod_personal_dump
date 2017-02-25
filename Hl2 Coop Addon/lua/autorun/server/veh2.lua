@@ -1,0 +1,1 @@
+list.Set( "WheelModels", "models/xeon133/offroad/Off-road-30.mdl", { wheel_rx = 0, 	wheel_ry = 0, 	wheel_rz = 0} )

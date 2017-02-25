@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+    "$basetexture" "models\weapons\v_pulsemg\pulse_mg"
+    "$envmap" "env_cubemap"
+    "$envmapmask" "models\weapons\v_pulsemg\pulse_mg_ref"
+}

@@ -1,0 +1,10 @@
+"AddonInfo"
+{
+	"name"				"Dukenukem3d pipebomb"
+	"version"			"1"
+	"up_date"			"2010"
+	"author_name"			"Jvs/ilwrath"
+	"author_email"			""
+	"author_url"			""
+	"info"				"clientsideaddons"
+}

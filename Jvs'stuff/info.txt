@@ -1,0 +1,10 @@
+"AddonInfo"
+{
+	"name"				"Jvs'Stuff"
+	"version"			"1"
+	"up_date"			"2010"
+	"author_name"			""
+	"author_email"			""
+	"author_url"			""
+	"info"				"Jvs'Stuff"
+}

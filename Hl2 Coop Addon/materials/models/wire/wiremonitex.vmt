@@ -1,0 +1,12 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/wire/wiremonitex"
+	"$bumpmap" "models/wire/wiremonitex_normal"
+	"$nodecal" "1"
+	"$model" "1"
+
+	"$phong" "1"
+	"$phongexponent" 38
+	"$phongexponenttexture" "models/wire/wiremonitex_phong"
+	"$phongboost"	"5"
+}

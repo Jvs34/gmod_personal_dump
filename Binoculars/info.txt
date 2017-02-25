@@ -1,0 +1,11 @@
+"AddonInfo"
+{
+	"name"				"Binoculars,from Hl2 Beta"
+	"version"			"1.4"
+	"up_date"			"08/1/2009"
+	"author_name"			"Jvs"
+	"author_email"			""
+	"author_url"			""
+	"info"				""
+	"override"			"0"
+}

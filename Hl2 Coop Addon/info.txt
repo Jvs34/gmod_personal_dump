@@ -1,0 +1,11 @@
+"AddonInfo"
+{
+	"name"				"Hl2 Coop Addon"
+	"version"			"1"
+	"up_date"			"Too lazy to write it"
+	"author_name"			"Jvs"
+	"author_email"			"jvs_34@yahoo.it"
+	"author_url"			"www.multiplayer-italia.com"
+	"info"				"Various hl2 campaign fixes"
+	"override"			"0"
+}

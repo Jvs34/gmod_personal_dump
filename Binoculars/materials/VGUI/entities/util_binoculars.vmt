@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$basetexture" "VGUI/entities/util_binoculars"
+	"$nolod" 1
+	"$vertexalpha" 1
+	"$vertexcolor" 1
+}
