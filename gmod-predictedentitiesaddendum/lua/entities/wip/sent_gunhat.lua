@@ -1,0 +1,1 @@
+--models/player/items/humans/top_hat.mdl
