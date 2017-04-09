@@ -1,0 +1,10 @@
+"AddonInfo"
+{
+	"name"				"Vortigaunt Beam"
+	"version"			"1"
+	"up_date"			"2010"
+	"author_name"			"Jvs"
+	"author_email"			""
+	"author_url"			""
+	"info"				""
+}

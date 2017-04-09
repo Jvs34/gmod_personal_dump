@@ -1,0 +1,11 @@
+"AddonInfo"
+{
+	"name"				"PuntCannon"
+	"version"			"2"
+	"up_date"			"27/08/2010"
+	"author_name"			"Jvs"
+	"author_email"			"jvs_34@yahoo.it"
+	"author_url"			"www.multiplayer-italia.com"
+	"info"				""
+	"override"			"0"
+}

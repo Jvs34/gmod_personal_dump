@@ -1,0 +1,11 @@
+"AddonInfo"
+{
+	"name"				"Ep2 Radar Addon"
+	"version"			"1.0"
+	"up_date"			"2/12/2009"
+	"author_name"			"Jvs"
+	"author_email"			"jvs_34@yahoo.it"
+	"author_url"			""
+	"info"				""
+	"override"			"0"
+}

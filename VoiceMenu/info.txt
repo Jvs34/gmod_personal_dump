@@ -1,0 +1,11 @@
+"AddonInfo"
+{
+	"name"				"VoiceMenu"
+	"version"			"1"
+	"up_date"			"12/January/2010"
+	"author_name"			"Jvs"
+	"author_email"			"jvs_34@yahoo.it"
+	"author_url"			"www.multiplayer-italia.com"
+	"info"				"An addon that let's you use a source engine style command menu."
+	"override"			"0"
+}
