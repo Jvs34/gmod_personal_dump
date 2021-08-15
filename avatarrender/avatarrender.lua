@@ -23,16 +23,19 @@ local RENDERSIZES = {
 		width = 32,
 		height = 32,
 	},
-	{
+	]]
+	{ --new facepunch forums
 		width = 64,
 		height = 64,
+		drawborder = true,
 	},
+	--[[
 	{
 		width = 128,
 		height = 128,
 	},
 	]]
-	{
+	{ --old facepunch forums
 		width = 80,
 		height = 160,
 		transparent = true,
@@ -49,11 +52,18 @@ local RENDERSIZES = {
 		height = 256,
 	},
 	]]
-	{
+	{ --steam and other shit
+		width = 500,
+		height = 500,
+	},
+	{ --steam and other shit
 		width = 512,
 		height = 512,
 	},
-
+	{ --what the fuck xbox
+		width = 1080,
+		height = 1080,
+	},
 }
 
 local GENERALSIZE = RENDERSIZES[4]
@@ -83,12 +93,13 @@ end
 
 
 
-local CURRENTMODE = "winter"
+local CURRENTMODE = "spacezombie"
 local TEXTURETOREPLACE = "models/player/spy/mask_scout"
 local TEXTURETOREPLACEWITH = "data/"..FOLDER.."/mask_luaking"
 
 local REPLACEPNG_BLU = Material( TEXTURETOREPLACEWITH .."_blu.png" , "vertexlitgeneric smooth" )
 local REPLACEPNG_RED = Material( TEXTURETOREPLACEWITH .."_red.png" , "vertexlitgeneric smooth" )
+local REPLACEPNG_THINK = Material( TEXTURETOREPLACEWITH .."_think.png" , "vertexlitgeneric smooth" )
 
 local REPLACEMATERIAL = CreateMaterial( "avatarspymaskmat" ,
 	"VertexLitGeneric",
@@ -647,6 +658,138 @@ local MODES = {
 			MODESMODELS["kinghat"]:DrawModel()
 		end
 	},
+	robot = {
+		init = function( spyent )
+			local robotspy = ClientsideModel( "models/bots/spy/bot_spy.mdl" )
+			robotspy:SetNoDraw( true )
+			robotspy:AddEffects( EF_BONEMERGE )
+			robotspy:SetParent( spyent )
+			
+			MODESMODELS["robot"] = robotspy
+		end,
+		setup = function( spyent , redorblue )
+			MODESMODELS["robot"]:SetSkin( redorblue and 0 or 1 )
+			spyent:SetMaterial( "engine/occlusionproxy" )
+			spyent:SetBodygroup( 1 , 0 )
+		end,
+		render = function( spyent )
+			MODESMODELS["robot"]:DrawModel()
+		end
+	},
+	robotmask = {
+		init = function( spyent )
+			local robotspy = ClientsideModel( "models/bots/spy/bot_spy.mdl" )
+			robotspy:SetNoDraw( true )
+			robotspy:AddEffects( EF_BONEMERGE )
+			robotspy:SetParent( spyent )
+			
+			MODESMODELS["robotmask"] = robotspy
+		end,
+		setup = function( spyent , redorblue )
+			MODESMODELS["robotmask"]:SetSkin( redorblue and 0 or 1 )
+			spyent:SetMaterial( "engine/occlusionproxy" )
+			spyent:SetBodygroup( 1 , 1 )
+		end,
+		render = function( spyent )
+			MODESMODELS["robotmask"]:DrawModel()
+		end
+	},
+	zombie = {
+		init = function( spyent )
+			local robotspy = ClientsideModel( "models/player/items/spy/spy_zombie.mdl" )
+			robotspy:SetNoDraw( true )
+			robotspy:AddEffects( EF_BONEMERGE )
+			robotspy:SetParent( spyent )
+			
+			MODESMODELS["zombie"] = robotspy
+		end,
+		setup = function( spyent , redorblue )
+			MODESMODELS["zombie"]:SetSkin( redorblue and 0 or 1 )
+			spyent:SetSkin( redorblue and 24 or 23 )
+			spyent:SetBodygroup( 1 , 0 )
+		end,
+		render = function( spyent )
+			MODESMODELS["zombie"]:DrawModel()
+		end
+	},
+	easter = {
+		init = function( spyent )
+			local hat = ClientsideModel( "models/player/items/spy/spy_ttg_max.mdl" )
+			hat:SetNoDraw( true )
+			hat:AddEffects( EF_BONEMERGE )
+			hat:SetParent( spyent )
+			
+			MODESMODELS["easterhat"] = hat
+		end,
+		setup = function( spyent , redorblue )
+			MODESMODELS["easterhat"]:SetSkin( 0 )
+			spyent:SetBodygroup( 1 , 1 )
+		end,
+		render = function( spyent )
+			MODESMODELS["easterhat"]:DrawModel()
+		end
+	},
+	space = {
+		init = function( spyent )
+			local hat = ClientsideModel( "models/workshop_partner/player/items/all_class/ai_spacehelmet/ai_spacehelmet_spy.mdl" )
+			hat:SetNoDraw( true )
+			hat:AddEffects( EF_BONEMERGE )
+			hat:SetParent( spyent )
+			
+			MODESMODELS["space"] = hat
+		end,
+		setup = function( spyent , redorblue )
+			MODESMODELS["space"]:SetSkin( 0 )
+			spyent:SetBodygroup( 1 , 1 )
+		end,
+		render = function( spyent )
+			MODESMODELS["space"]:DrawModel()
+		end
+	},
+	spacemann = {
+		init = function( spyent )
+			local hat = ClientsideModel( "models/workshop/player/items/all_class/invasion_captain_space_mann/invasion_captain_space_mann_spy.mdl" )
+			hat:SetNoDraw( true )
+			hat:AddEffects( EF_BONEMERGE )
+			hat:SetParent( spyent )
+			
+			MODESMODELS["spacemann"] = hat
+		end,
+		setup = function( spyent , redorblue )
+			MODESMODELS["spacemann"]:SetSkin( 0 )
+			spyent:SetBodygroup( 1 , 1 )
+		end,
+		render = function( spyent )
+			MODESMODELS["spacemann"]:DrawModel()
+		end
+	},
+	spacezombie = {
+		init = function( spyent )
+			local robotspy = ClientsideModel( "models/player/items/spy/spy_zombie.mdl" )
+			robotspy:SetNoDraw( true )
+			robotspy:AddEffects( EF_BONEMERGE )
+			robotspy:SetParent( spyent )
+			
+			MODESMODELS["spacezombie"] = robotspy
+
+			local hat = ClientsideModel( "models/workshop_partner/player/items/all_class/ai_spacehelmet/ai_spacehelmet_spy.mdl" )
+			hat:SetNoDraw( true )
+			hat:AddEffects( EF_BONEMERGE )
+			hat:SetParent( spyent )
+			
+			MODESMODELS["spacezombiehat"] = hat
+		end,
+		setup = function( spyent , redorblue )
+			MODESMODELS["spacezombie"]:SetSkin( redorblue and 0 or 1 )
+			MODESMODELS["spacezombiehat"]:SetSkin( 0 )
+			spyent:SetSkin( redorblue and 24 or 23 )
+			spyent:SetBodygroup( 1 , 0 )
+		end,
+		render = function( spyent )
+			MODESMODELS["spacezombie"]:DrawModel()
+			MODESMODELS["spacezombiehat"]:DrawModel()
+		end
+	},
 }
 
 local function SetupFlexes( spymodel , emotion )
@@ -667,13 +810,18 @@ local function SetupSpy( mode , redorblue )
 	
 	local textr = ( redorblue and REPLACEPNG_RED:GetTexture( "$basetexture" ) or REPLACEPNG_BLU:GetTexture( "$basetexture" ) )
 	
+	if redorblue == nil then
+		textr = REPLACEPNG_THINK:GetTexture( "$basetexture" )
+		redorblue = false
+	end
+
 	REPLACEMATERIAL:SetTexture( "$basetexture" , textr )
 	
 	SPYMODEL:SetSequence( "stand_sapper" )
 	
 	local skin = 4 + ( redorblue and 0 or 1 )
 	SPYMODEL:SetSkin( skin )
-	
+	SPYMODEL:SetMaterial( "" )
 	MODES[mode].setup( SPYMODEL , redorblue )
 	
 	SPYMODEL:SetAngles( Angle( 0 , 0 , 0 ) )
@@ -810,7 +958,13 @@ local function ExecuteRenderQueue()
 		
 		local destfolder = FOLDER.."/"..v.size.width.."x"..v.size.height
 		
-		destfolder = destfolder .. "/" .. v.mode .. "_" .. ( v.redorblue and "red" or "blu" ) .. ".jpg"
+		local tag = ""
+		
+		if v.redorblue ~= nil then
+			tag = ( v.redorblue and "red" or "blu" )
+		end
+
+		destfolder = destfolder .. "/" .. v.mode .. "_" .. tag .. ".jpg"
 		
 		local imagefile = file.Open( destfolder , "wb" , "DATA" )
 		
@@ -909,6 +1063,15 @@ local function StartRenderCommand( ply , cmd , args , argstr )
 				mode = j,
 			}
 			
+			--THONK
+			--[[
+			RENDERQUEUE[ #RENDERQUEUE + 1 ] = {
+				size = v,
+				redorblue = nil,
+				mode = j,
+			}
+			]]
+			
 			if RENDER_RED then
 				RENDERQUEUE[ #RENDERQUEUE + 1 ] = {
 					size = v,
@@ -945,7 +1108,7 @@ end)
 
 hook.Add( "PostDrawOpaqueRenderables" , "RenderSpy" , function( drawingdepth, drawingskybox )
 	if not drawingdepth and not drawingskybox then
-		--RenderSpy( nil , CURRENTMODE , REDORBLUE , true )
+		RenderSpy( nil , CURRENTMODE , REDORBLUE , true )
 	end
 end)
 

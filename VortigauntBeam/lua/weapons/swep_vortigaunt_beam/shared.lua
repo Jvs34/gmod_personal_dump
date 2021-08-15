@@ -36,24 +36,24 @@ SWEP.AdminSpawnable  		= true
 SWEP.ViewModel 				= "models/weapons/v_vortbeamvm.mdl"
 SWEP.WorldModel 			= ""
 
-SWEP.Range					= 2*GetConVarNumber( "sk_vortigaunt_zap_range",100)*12//because it's in feet,we convert it.
-SWEP.DamageForce			= 48000	 //12000 is the force done by two vortigaunts claws zap attack
-SWEP.AmmoPerUse				= 1		 //we use ar2 altfire ammo,don't exagerate here	
+SWEP.Range					= 2*GetConVarNumber( "sk_vortigaunt_zap_range",100)*12--because it's in feet,we convert it.
+SWEP.DamageForce			= 48000	 --12000 is the force done by two vortigaunts claws zap attack
+SWEP.AmmoPerUse				= 1		 --we use ar2 altfire ammo,don't exagerate here	
 SWEP.HealSound				= Sound("NPC_Vortigaunt.SuitOn")
 SWEP.HealLoop				= Sound("NPC_Vortigaunt.StartHealLoop")
 SWEP.AttackLoop				= Sound("NPC_Vortigaunt.ZapPowerup" )
 SWEP.AttackSound			= Sound("NPC_Vortigaunt.ClawBeam")
-SWEP.HealDelay				= 1		//we heal again CurTime()+self.HealDelay
-SWEP.MaxArmor				= 18	//used for the math.random
-SWEP.MinArmor				= 12	//"		"	"	"
-SWEP.ArmorLimit				= 100	//100 is the default hl2 armor limit
-SWEP.BeamDamage				= 100	//25 is done by one zap attack,since vortigaunt has two claws,50 dmg,
-									//100 is the real damage,try to make a vortigaunt hate you,and if you have 100 hp,you will be oneshotted
-SWEP.BeamChargeTime			= 1.25	//the delay used to charge the beam and zap!
+SWEP.HealDelay				= 1		--we heal again CurTime()+self.HealDelay
+SWEP.MaxArmor				= 18	--used for the math.random
+SWEP.MinArmor				= 12	--"		"	"	"
+SWEP.ArmorLimit				= 100	--100 is the default hl2 armor limit
+SWEP.BeamDamage				= 100	--25 is done by one zap attack,since vortigaunt has two claws,50 dmg,
+									--100 is the real damage,try to make a vortigaunt hate you,and if you have 100 hp,you will be oneshotted
+SWEP.BeamChargeTime			= 1.25	--the delay used to charge the beam and zap!
 SWEP.Deny					= Sound("Buttons.snd19")			
 
 SWEP.Primary.ClipSize		= -1
-SWEP.Primary.DefaultClip	= 5		//give the poor user 5 combine balls to have fun with this wepon
+SWEP.Primary.DefaultClip	= 5		--give the poor user 5 combine balls to have fun with this wepon
 SWEP.Primary.Ammo 			= "AR2AltFire"
 SWEP.Primary.Automatic		= true
 
@@ -64,19 +64,19 @@ SWEP.Secondary.Ammo 		= false
 SWEP.Secondary.Automatic 	= true
 
 function SWEP:Initialize()
-	self.Charging=false;//we are not charging!
-	self.Healing=false;	//we are not healing!
-	self.HealTime=CurTime();//we can heal
-	self.ChargeTime=CurTime();//we can zap
-	self:SetWeaponHoldType("slam")//this is the better holdtype i could find,well,it fits its job
+	self.Charging=false;--we are not charging!
+	self.Healing=false;	--we are not healing!
+	self.HealTime=CurTime();--we can heal
+	self.ChargeTime=CurTime();--we can zap
+	self:SetWeaponHoldType("slam")--this is the better holdtype i could find,well,it fits its job
 	if (CLIENT) then return end
-	self:CreateSounds()			//create the looping sounds	
+	self:CreateSounds()			--create the looping sounds	
 end 
 
 function SWEP:Precache()
-	PrecacheParticleSystem( "vortigaunt_beam" );		//the zap beam
-	PrecacheParticleSystem( "vortigaunt_beam_charge" );	//the glow particles
-	util.PrecacheModel(self.ViewModel)					//the... come on,that's obvious
+	PrecacheParticleSystem( "vortigaunt_beam" );		--the zap beam
+	PrecacheParticleSystem( "vortigaunt_beam_charge" );	--the glow particles
+	util.PrecacheModel(self.ViewModel)					--the... come on,that's obvious
 end
 
 function SWEP:CreateSounds()
@@ -136,9 +136,9 @@ end
 
 function SWEP:CreateBlast(scale,pos)
 	if CLIENT then return end
-	local blastspr = ents.Create("env_sprite");			//took me hours to understand how this damn
-	blastspr:SetPos( pos );								//entity works
-	blastspr:SetKeyValue( "model", "sprites/vortring1.vmt")//the damn vortigaunt beam ring
+	local blastspr = ents.Create("env_sprite");			--took me hours to understand how this damn
+	blastspr:SetPos( pos );								--entity works
+	blastspr:SetKeyValue( "model", "sprites/vortring1.vmt")--the damn vortigaunt beam ring
 	blastspr:SetKeyValue( "scale",tostring(scale))
 	blastspr:SetKeyValue( "framerate",60)
 	blastspr:SetKeyValue( "spawnflags","1")
@@ -147,18 +147,18 @@ function SWEP:CreateBlast(scale,pos)
 	blastspr:SetKeyValue( "rendermode","9")
 	blastspr:SetKeyValue( "renderamt","255")
 	blastspr:Spawn()
-	blastspr:Fire("kill","",0.45)							//remove it after 0.45 seconds
+	blastspr:Fire("kill","",0.45)							--remove it after 0.45 seconds
 end						
 function SWEP:Shoot(dmg,effect)
 	local pPlayer=self.Owner
 	if !pPlayer then return end
-	//so you can't just snipe with the long range of 16384 game units
+	--so you can't just snipe with the long range of 16384 game units
 	local traceres=util.QuickTrace(self.Owner:EyePos(),self.Owner:GetAimVector()*self.Range,self.Owner)
-	self:ShootEffect(effect or "vortigaunt_beam",pPlayer:EyePos(),traceres.HitPos)	//shoop da whoop
+	self:ShootEffect(effect or "vortigaunt_beam",pPlayer:EyePos(),traceres.HitPos)	--shoop da whoop
 	if SERVER then
-		if IsValid(traceres.Entity) then	//we hit something
+		if IsValid(traceres.Entity) then	--we hit something
 		local DMG=DamageInfo()
-		DMG:SetDamageType(DMG_SHOCK)		//it's called vortigaunt zap attack for a reason
+		DMG:SetDamageType(DMG_SHOCK)		--it's called vortigaunt zap attack for a reason
 		DMG:SetDamage(dmg or self.BeamDamage)
 		DMG:SetAttacker(self.Owner)
 		DMG:SetInflictor(self)
@@ -208,15 +208,15 @@ function SWEP:Deploy()
 end
 
 function SWEP:Think()
-	if self.Owner && IsValid(self.Owner)then self.LastOwner=self.Owner end //i hate doing this,whatever
-	//i send the weapon animation before the actual shooting because the gravity gloves attack is delayed...
+	if self.Owner && IsValid(self.Owner)then self.LastOwner=self.Owner end --i hate doing this,whatever
+	--i send the weapon animation before the actual shooting because the gravity gloves attack is delayed...
 	if self.Charging && self.ChargeTime-0.25 < CurTime() && !self.attack then
 		
-		if self.Owner:GetAmmoCount(self.Primary.Ammo)>=self.AmmoPerUse then//check always if we have ammo
+		if self.Owner:GetAmmoCount(self.Primary.Ammo)>=self.AmmoPerUse then--check always if we have ammo
 			self.Weapon:SendWeaponAnim(ACT_VM_SECONDARYATTACK)
-			self:DispatchEffect("vortigaunt_charge_token")//this effect lags a lot,but we see it for 0.75 seconds,who cares
-			//self.Owner:SetAnimation(PLAYER_ATTACK1)	//todo:sincronize the world model player attack
-			//and,send the idle animation
+			self:DispatchEffect("vortigaunt_charge_token")--this effect lags a lot,but we see it for 0.75 seconds,who cares
+			--self.Owner:SetAnimation(PLAYER_ATTACK1)	--todo:sincronize the world model player attack
+			--and,send the idle animation
 			timer.Simple(0.75,function()if !IsValid(self.Owner) || self.Owner:GetActiveWeapon()!=self || !IsValid(self)  then return end self.Weapon:SendWeaponAnim(ACT_VM_IDLE)end)
 		end
 		self.attack=true;
@@ -225,7 +225,7 @@ function SWEP:Think()
 	if self.Charging && self.ChargeTime < CurTime() then
 		
 		if self.Owner:GetAmmoCount(self.Primary.Ammo)<self.AmmoPerUse then 
-			//what the hell? something stole my ammo!
+			--what the hell? something stole my ammo!
 			self.Weapon:EmitSound(self.Deny)
 			self.Weapon:SetNextPrimaryFire(CurTime()+SoundDuration(self.Deny))
 			self.Weapon:SetNextSecondaryFire(CurTime()+SoundDuration(self.Deny))
@@ -306,8 +306,8 @@ function SWEP:PrimaryAttack()
 	self.Charging=true
 	self.Weapon:SendWeaponAnim(ACT_VM_RELOAD)
 	
-	//commented because util.particletracer does not follow the attachment pos
-	//and ParticleEffectAttach does not let you set the endpoint of an effect,or it does?
+	--commented because util.particletracer does not follow the attachment pos
+	--and ParticleEffectAttach does not let you set the endpoint of an effect,or it does?
 	/*
 	self:ShootEffect("vortigaunt_beam_charge",self.Owner:EyePos(),self.Owner:GetPos()+Vector(0,32,0))
 	self:ShootEffect("vortigaunt_beam_charge",self.Owner:EyePos(),self.Owner:GetPos()+Vector(0,-32,0))
